@@ -71,26 +71,40 @@
       font-size: 0.9rem;
       color: #666;
     }
+    
+    /* About container spacing + readability */
+    #about { 
+      margin-top: 1rem;
+    }
+    #about .about-lead {
+      font-size: 1.08rem;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+    #about h2 {
+      letter-spacing: .06em;
+    }
   </style>
 </head>
+  
 <body>
   <header>
     <div class="header-container">
       <h1>Pedro Catarino</h1>
-      <p>Data Projects Portfolio</p>
+      <p>Project Portfolio</p>
     </div>
   </header>
-  
-  <section class="about">
+
+    <section id="about" class="py-4">
     <div class="container">
-      <p>
-        My name is Pedro Catarino and I've always been passionate about transforming raw data into meaningful insights and actionable predictions.
-        To deepen my technical skills and explore real-world applications, I have developed several personal projects. Below are two of the most recent projects,
-        showcasing both technical development and business impact.
+      <h2 class="h6 text-uppercase text-muted mb-2">About me:</h2>
+      <p class="about-lead mb-0">
+        I’m Pedro Catarino. The best way to show what I do is through real work.
+        Below are data projects I’ve built in my spare time around topics I care about.
       </p>
     </div>
-  </section>
- 
+  </section>  
+
   <div class="container">
     <div class="project">
       <h2>Extracting customer insights from Banking App reviews</h2>

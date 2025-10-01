@@ -1,159 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pedro Catarino — Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pedro Catarino — Data Projects Portfolio</title>
+
+  <!-- SEO / Social -->
+  <meta name="description" content="Data projects by Pedro Catarino: NLP on app reviews, football scouting analytics, and more." />
+  <meta property="og:title" content="Pedro Catarino — Data Projects" />
+  <meta property="og:description" content="Selected data projects: NLP on banking app reviews, football scouting analytics, and more." />
+  <meta property="og:type" content="website" />
+
+  <!-- Font: Inter -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background: #f9f9f9;
-      color: #333;
+    /* ---------- Design tokens ---------- */
+    :root{
+      --bg: #f7f8fb;
+      --surface: #ffffff;
+      --text: #0f172a;      /* slate-900 */
+      --muted: #475569;      /* slate-600 */
+      --primary: #2563eb;    /* blue-600 */
+      --primary-600: #1d4ed8;
+      --ring: rgba(37,99,235,.35);
+      --border: #e5e7eb;
+      --radius: 14px;
+      --shadow: 0 10px 25px rgba(2,6,23,.08);
+      --space-1: .375rem;
+      --space-2: .75rem;
+      --space-3: 1rem;
+      --space-4: 1.25rem;
+      --space-5: 2rem;
+      --maxw: 1100px;
     }
-    header {
-      background: #2c3e50;
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg: #0b1220;
+        --surface: #0f172a;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --primary: #60a5fa;
+        --primary-600: #3b82f6;
+        --ring: rgba(96,165,250,.4);
+        --border: #1f2937;
+        --shadow: 0 10px 25px rgba(0,0,0,.35);
+      }
     }
-    .header-container {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: left; 
+
+    /* ---------- Base ---------- */
+    html{scroll-behavior:smooth}
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      line-height:1.65;
+      color:var(--text);
+      background:var(--bg);
     }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
+    a{color:var(--primary); text-decoration:none}
+    a:hover{color:var(--primary-600)}
+    img{max-width:100%; display:block}
+
+    /* ---------- Layout ---------- */
+    .container{max-width:var(--maxw); margin:0 auto; padding:0 var(--space-4)}
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter: saturate(180%) blur(8px);
+      background: color-mix(in oklab, var(--bg) 70%, transparent);
+      border-bottom:1px solid var(--border);
     }
-    header p {
-      font-size: 1.1rem;
-      opacity: 0.8;
+    nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{font-weight:700; letter-spacing:.2px}
+    .nav a{margin-left:var(--space-3); color:var(--muted)}
+    .nav a:focus-visible, .btn:focus-visible {outline: 3px solid var(--ring); outline-offset:2px; border-radius:10px}
+
+    .hero{
+      padding: clamp(2.5rem, 5vw, 5rem) 0;
+      background:
+        radial-gradient(1200px 500px at 10% -10%, color-mix(in oklab, var(--primary) 12%, transparent), transparent),
+        radial-gradient(900px 450px at 110% -20%, color-mix(in oklab, var(--primary) 18%, transparent), transparent);
+      border-bottom:1px solid var(--border);
     }
-    .container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+    .hero h1{font-size: clamp(1.9rem, 3.6vw, 3rem); margin:0 0 .4rem 0}
+    .hero p{color:var(--muted); margin:0}
+
+    main{padding: var(--space-5) 0}
+    section+section{margin-top: var(--space-5)}
+
+    /* ---------- About ---------- */
+    .lead{font-size:1.07rem; color:var(--muted)}
+
+    /* ---------- Projects ---------- */
+    .projects-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-4);
+      margin-top: var(--space-3);
     }
-    .project {
-      background: white;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    .card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding: var(--space-4);
+      box-shadow: var(--shadow);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
-    .project h2 {
-      margin-top: 0;
-      color: #2c3e50;
+    .card:hover{ transform: translateY(-2px); box-shadow: 0 16px 35px rgba(2,6,23,.12) }
+    .card h3{ margin:0 0 .25rem 0; line-height:1.35 }
+    .meta{ color:var(--muted); font-size:.95rem; margin-bottom: var(--space-2) }
+    .badges{ display:flex; flex-wrap:wrap; gap:.4rem; margin:.25rem 0 var(--space-2) }
+    .badge{
+      font-size:.78rem; padding:.25rem .5rem; border-radius:999px;
+      background: color-mix(in oklab, var(--primary) 12%, white);
+      color: color-mix(in oklab, var(--primary) 65%, black);
+      border:1px solid color-mix(in oklab, var(--primary) 35%, var(--border));
     }
-    ul {
-      margin: 0.5rem 0 1rem 0.5rem;
+    .card ul{ margin:.25rem 0 0 1rem }
+
+    /* ---------- Buttons ---------- */
+    .btn-row{display:flex; flex-wrap:wrap; gap:.5rem; margin-top: var(--space-3)}
+    .btn{
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.55rem .9rem; border-radius:10px; font-weight:600;
+      border:1px solid var(--border); background:var(--surface); color:var(--text);
+      transition: background .2s, border-color .2s, transform .2s;
     }
-    .buttons a {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      margin-right: 0.5rem;
-      margin-top: 0.5rem;
-      background: #3498db;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-    .buttons a:hover {
-      background: #217dbb;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
-    
-    /* About container spacing + readability */
-    #about { 
-      margin-top: 1rem;
-    }
-    #about .about-lead {
-      font-size: 1.08rem;
-      line-height: 1.6;
-      font-weight: 500;
-    }
-    #about h2 {
-      letter-spacing: .06em;
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{ background:var(--primary); border-color: transparent; color:white }
+    .btn-primary:hover{ background:var(--primary-600) }
+    .btn svg{width:18px; height:18px}
+
+    /* ---------- Contact & Footer ---------- */
+    .contact{ background: linear-gradient( to bottom, color-mix(in oklab, var(--primary) 7%, transparent), transparent ); padding: var(--space-5) 0; border-top:1px solid var(--border) }
+    footer{ text-align:center; color:var(--muted); padding: var(--space-4) 0 }
+
+    /* ---------- Motion prefs ---------- */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important; transition:none !important}
     }
   </style>
 </head>
-  
 <body>
+
+  <!-- Header / Nav -->
   <header>
-    <div class="header-container">
-      <h1>Pedro Catarino</h1>
-      <p>Project Portfolio</p>
+    <div class="container">
+      <nav aria-label="Primary">
+        <div class="brand">Pedro Catarino</div>
+        <div class="nav" role="navigation">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
     </div>
   </header>
 
-    <section id="about" class="py-4">
+  <!-- Hero -->
+  <div class="hero">
     <div class="container">
-      <h2 class="h6 text-uppercase text-muted mb-2">About me:</h2>
-      <p class="about-lead mb-0">
-        I’m Pedro Catarino. The best way to show what I do is through real work.
-        Below are data projects I’ve built in my spare time around topics I care about.
-      </p>
-    </div>
-  </section>  
-
-  <div class="container">
-    <div class="project">
-      <h2>Extracting customer insights from Banking App reviews</h2>
-
-      <p><strong>Goal:</strong> Extract meaningful insights from customer reviews on Google Play Store of 6 banking apps in the UK, understanding customer sentiment and mapping main reasons for (dis)satisfaction.</p>
-      
-      <p><strong>Technical development:</strong></p>
-      <ul>
-        <li>Web scraping of +800k reviews from Google Play Store relative to 6 different banking Apps from UK</li>
-        <li>Text cleaning and preprocessing unsing Pandas and Scikit Learn</li>
-        <li>Sentiment analysis using VADER</li>
-        <li>Topic modeling using Latent Dirichlet Allocation (LDA)</li>
-        <li>Development of Streamlit web application to interact with data and gather insights</li>
-      </ul>
-
-      <p><strong>Business Value:</strong> Delivery of actionable insights to support product development and CX strategies.</p>
-
-      <div class="buttons">
-        <a href="https://banking-app-reviews.streamlit.app/" target="_blank">Web App</a>        
-        <a href="https://github.com/pcatarino88/banking_app_reviews" target="_blank">Git Hub</a>
-      </div>
-    </div>
-
-    <div class="project">
-      <h2>Scouting football players</h2>
-      
-      <p><strong>Goal:</strong> Scout and compare football players from a wide range of top football leagues, filtering the scouting criteria by position, skills, age and market value.</p>
-      
-      <p><strong>Technical development:</strong></p>
-      <ul>
-        <li>Web scraping +100 statistics from +9k players from +10 football leagues (source: Transfermarkt and FBRef)</li>
-        <li>Text cleaning and preprocessing unsing Pandas and Scikit Learn</li>
-        <li>Feature engineering to develop aggregated skills composites</li>
-        <li>Development of algorithms to find top players for a given set of preferred skills that the user can select</li>
-        <li>Development of comparison charts using Ploty</li>
-        <li>Development of Streamlit web application to find and compare players</li>
-      </ul>
-
-      <p><strong>Business Value:</strong> Creation of a prototype that applies analytics to shortlist players, improving efficiency and accuracy in scouting decisions.</p>
-      
-      <div class="buttons">
-        <a href="https://scout-football.streamlit.app/">Web App</a>        
-        <a href="https://github.com/pcatarino88/football_scout">Git Hub</a>
-      </div>
+      <h1>Data Projects Portfolio</h1>
+      <p class="lead">I like turning messy data into clear decisions. Below are a few projects I’ve built around topics I care about.</p>
     </div>
   </div>
 
+  <main class="container">
+    <!-- About -->
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About me</h2>
+      <p class="lead">
+        I’m Pedro Catarino, a data practitioner focused on practical, end-to-end projects:
+        from data collection and cleaning to modeling and simple apps to deliver insights.
+      </p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">Projects</h2>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <article class="card">
+          <h3>Extracting customer insights from Banking App reviews</h3>
+          <div class="meta">NLP · Topic Modeling · Streamlit</div>
+          <div class="badges">
+            <span class="badge">Python</span>
+            <span class="badge">Pandas</span>
+            <span class="badge">scikit-learn</span>
+            <span class="badge">VADER</span>
+            <span class="badge">LDA</span>
+          </div>
+          <p><strong>Goal:</strong> Extract meaningful insights from Google Play reviews of 6 UK banking apps—understand sentiment and map top reasons for (dis)satisfaction.</p>
+          <ul>
+            <li>Scraped 800k+ reviews from Google Play.</li>
+            <li>Text cleaning and preprocessing using Pandas and scikit-learn.</li>
+            <li>Sentiment analysis with VADER; topic modeling with LDA.</li>
+            <li>Built a Streamlit app to explore results and gather insights.</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="https://banking-app-reviews.streamlit.app/" target="_blank" rel="noopener">
+              <!-- external link icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              Web App
+            </a>
+            <a class="btn" href="https://github.com/pcatarino88/banking_app_reviews" target="_blank" rel="noopener">
+              <!-- GitHub icon -->
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.85 9.7.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.12-1.52-1.12-1.52-.92-.64.07-.63.07-.63 1.02.07 1.56 1.08 1.56 1.08.9 1.58 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.73 0 0 .85-.28 2.8 1.05a9.33 9.33 0 0 1 5.1 0c1.94-1.33 2.79-1.05 2.79-1.05.55 1.42.21 2.47.11 2.73.64.72 1.02 1.64 1.02 2.76 0 3.93-2.35 4.8-4.59 5.06.36.32.67.93.67 1.88 0 1.36-.01 2.45-.01 2.78 0 .26.18.58.69.48A10.07 10.07 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="card">
+          <h3>Scouting football players</h3>
+          <div class="meta">EDA · Feature Engineering · Streamlit</div>
+          <div class="badges">
+            <span class="badge">Python</span>
+            <span class="badge">Pandas</span>
+            <span class="badge">Plotly</span>
+            <span class="badge">Streamlit</span>
+          </div>
+          <p><strong>Goal:</strong> Scout and compare players across top leagues, filtering by position, skills, age, and market value.</p>
+          <ul>
+            <li>Scraped 100+ stats for 9k+ players from Transfermarkt & FBRef.</li>
+            <li>Cleaned data and engineered skill composites.</li>
+            <li>Algorithms to find top players given preferred skills.</li>
+            <li>Interactive comparisons with Plotly; Streamlit app UI.</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="https://scout-football.streamlit.app/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              Web App
+            </a>
+            <a class="btn" href="https://github.com/pcatarino88/football_scout" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.85 9.7.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.12-1.52-1.12-1.52-.92-.64.07-.63.07-.63 1.02.07 1.56 1.08 1.56 1.08.9 1.58 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.73 0 0 .85-.28 2.8 1.05a9.33 9.33 0 0 1 5.1 0c1.94-1.33 2.79-1.05 2.79-1.05.55 1.42.21 2.47.11 2.73.64.72 1.02 1.64 1.02 2.76 0 3.93-2.35 4.8-4.59 5.06.36.32.67.93.67 1.88 0 1.36-.01 2.45-.01 2.78 0 .26.18.58.69.48A10.07 10.07 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Contact -->
+  <section id="contact" class="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <h2 id="contact-title">Contact</h2>
+      <p class="lead">Questions, feedback, or opportunities? Reach me on <a href="https://www.linkedin.com/in/pedro-catarino/" target="_blank" rel="noopener">LinkedIn</a> or email <a href="mailto:pcatarino88@gmail.com">pcatarino88@gmail.com</a>.</p>
+    </div>
+  </section>
+
   <footer>
-    © 2025 Pedro Catarino
+    © <span id="year"></span> Pedro Catarino
   </footer>
+
+  <script>
+    // tiny nicety: current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

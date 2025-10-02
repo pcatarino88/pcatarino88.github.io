@@ -73,12 +73,11 @@
       border-bottom:1px solid var(--border);
     }
     nav{display:flex; align-items:center; justify-content:space-between; height:64px}
-    .brand{font-weight:700; letter-spacing:.2px}
-    .nav a{margin-left:var(--space-3); color:var(--muted)}
+    .nav a{margin-left:var(--space-4); color:var(--muted)}
     .nav a:focus-visible, .btn:focus-visible {outline: 3px solid var(--ring); outline-offset:2px; border-radius:10px}
 
     .hero{
-      padding: clamp(1rem, 2vw, 2rem) 0;
+      padding: clamp(0.5rem, 1vw, 1rem) 0;
       background:
         radial-gradient(1200px 500px at 10% -10%, color-mix(in oklab, var(--primary) 12%, transparent), transparent),
         radial-gradient(900px 450px at 110% -20%, color-mix(in oklab, var(--primary) 18%, transparent), transparent);
@@ -149,7 +148,6 @@
   <header>
     <div class="container">
       <nav aria-label="Primary">
-        <div class="brand">Pedro Catarino</div>
         <div class="nav" role="navigation">
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
@@ -162,8 +160,7 @@
   <!-- Hero -->
   <div class="hero">
     <div class="container">
-      <h1>Data Projects Portfolio</h1>
-      <p class="lead">I like turning messy data into clear decisions. Below are a few projects I’ve built around topics I care about.</p>
+      <h1> My Data Projects Portfolio</h1>
     </div>
   </div>
 

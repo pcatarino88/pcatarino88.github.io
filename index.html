@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon_pc.png">
   <!-- Character set & responsive sizing -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -72,13 +74,11 @@
       background: color-mix(in oklab, var(--bg) 70%, transparent);
       border-bottom:1px solid var(--border);
     }
-    nav{display:flex; align-items:center; justify-content:space-between; height:64px}
-    .brand{font-weight:700; letter-spacing:.2px}
-    .nav a{margin-left:var(--space-3); color:var(--muted)}
-    .nav a:focus-visible, .btn:focus-visible {outline: 3px solid var(--ring); outline-offset:2px; border-radius:10px}
-
+    nav{display:flex; align-items:center; justify-content:flex-end; height:45px}
+    .nav a{margin-left:var(--space-2); color:var(--muted)}
+    .nav a:focus-visible, .btn:focus-visible {outline: 3px solid var(--ring); outline-offset:2px; border-radius:10px}    
     .hero{
-      padding: clamp(1rem, 2vw, 2rem) 0;
+      padding: clamp(0.5rem, 0.9vw, 0.9rem) 0;
       background:
         radial-gradient(1200px 500px at 10% -10%, color-mix(in oklab, var(--primary) 12%, transparent), transparent),
         radial-gradient(900px 450px at 110% -20%, color-mix(in oklab, var(--primary) 18%, transparent), transparent);
@@ -109,7 +109,7 @@
       transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
     .card:hover{ transform: translateY(-2px); box-shadow: 0 16px 35px rgba(2,6,23,.12) }
-    .card h3{ margin:0 0 .25rem 0; line-height:1.35 }
+    .card h3{ margin:0 0 1rem 0; line-height:1.35 }
     .meta{ color:var(--muted); font-size:.95rem; margin-bottom: var(--space-2) }
     .badges{ display:flex; flex-wrap:wrap; gap:.4rem; margin:.25rem 0 var(--space-2) }
     .badge{
@@ -118,7 +118,14 @@
       color: color-mix(in oklab, var(--primary) 65%, black);
       border:1px solid color-mix(in oklab, var(--primary) 35%, var(--border));
     }
-    .card ul{ margin:.25rem 0 0 1rem }
+    .goal-img {
+      display: block;
+      margin: 1rem auto;   /* adds space and centers */
+      max-width: 100%;     /* makes it responsive */
+      border-radius: 8px;  /* optional rounded corners */
+    }
+
+    .card ul{ margin:0 }
 
     /* ---------- Buttons ---------- */
     .btn-row{display:flex; flex-wrap:wrap; gap:.5rem; margin-top: var(--space-3)}
@@ -149,7 +156,6 @@
   <header>
     <div class="container">
       <nav aria-label="Primary">
-        <div class="brand">Pedro Catarino</div>
         <div class="nav" role="navigation">
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
@@ -162,8 +168,7 @@
   <!-- Hero -->
   <div class="hero">
     <div class="container">
-      <h1>Data Projects Portfolio</h1>
-      <p class="lead">I like turning messy data into clear decisions. Below are a few projects I’ve built around topics I care about.</p>
+      <h1> My Data Projects Portfolio</h1>
     </div>
   </div>
 
@@ -174,27 +179,25 @@
       <p class="lead">
         <p>Hi, I’m Pedro!<p></p>
 
-        After a few years of living in Madrid and São Paulo, I’ve recently returned to Portugal and 
+        After a few years living abroad, I’ve recently returned to Portugal and 
         now call the seaside town of Sesimbra home. Life here is lively — I’ve got two beautiful 
         young daughters who make sure I never forget the meaning of “real-time problem solving.”<p><p>
 
-        Academically, I took the management route — both my undergrad and master’s are in 
-        management by Nova SBE. Professionally, I’ve held several functions in the industries of 
-        financial services, logistics, and strategy consulting. Somewhere along the way, 
-        I realized my favorite part of every job was using data to make sense of messy problems, 
+        Academically, I did my undergrad and master in management at Nova SBE. Professionally, I’ve 
+        held several functions in the industries of financial services, logistics, and strategy consulting. 
+        Somewhere along the way, I realized my favorite part of every job was using data to make sense of messy problems, 
         breaking them into smaller, solvable pieces.<p></p>
 
         I believe that in a world that’s changing so fast, curiosity, humility, and a love of 
         learning are key to thriving. In that sense, last year, I decided to hit pause on my 
-        management career and fully lean into data: strengthening my skills with the latest 
+        career and fully lean into data: strengthening my skills with the latest 
         tools, exploring AI, and building projects that bring these technologies into 
         real-world contexts.<p></p>
 
         I also believe the best way to know someone’s work isn’t just by reading about it 
         — it’s by seeing it in action. So, below you’ll find a couple of my recent projects, 
         built in my spare time to keep pushing my boundaries in the fascinating world of Data 
-        Science and Artificial Intelligence. Hope you like it! Feel free to reach out if you 
-        want to chat about any of it.
+        and AI. Hope you like it and feel free to reach out!
       </p>
     </section>
 
@@ -205,32 +208,40 @@
       <div class="projects-grid">
         <!-- Project 1 -->
         <article class="card">
-          <h3>Extracting customer insights from Banking App reviews</h3>
-          <div class="meta">NLP · Topic Modeling · Streamlit</div>
+          <h3>Extracting insights from Google Play reviews</h3>
           <div class="badges">
             <span class="badge">Python</span>
-            <span class="badge">Pandas</span>
-            <span class="badge">scikit-learn</span>
-            <span class="badge">VADER</span>
-            <span class="badge">LDA</span>
+            <span class="badge">Topic Modeling</span>            
+            <span class="badge">NLP</span>
+            <span class="badge">LLM</span>
+            <span class="badge">Visualization</span>
+            <span class="badge">Streamlit</span>
           </div>
-          <p><strong>Goal:</strong> Extract meaningful insights from Google Play reviews of 6 UK banking apps—understand sentiment and map top reasons for (dis)satisfaction.</p>
+          <p><strong>Project Goal:</strong> <p></p>
+            Customers leave thousands of reviews on banking apps each month. While full of useful feedback, 
+            they vary in length and tone (sometimes with a touch of anxiety 😊), making analysis challenging.  
+            This project uses Google Play reviews of UK bank apps to extract insights and 
+            highlight strengths, weaknesses, and real-time issues affecting customer experience.</p>
+          
+          <img src="images/app_reviews1.png" alt="Project Goal illustration" class="goal-img">
+          
+          <p><strong>Key Features:</strong> <p></p>
           <ul>
             <li>Scraped 800k+ reviews from Google Play.</li>
-            <li>Text cleaning and preprocessing using Pandas and scikit-learn.</li>
-            <li>Sentiment analysis with VADER; topic modeling with LDA.</li>
-            <li>Built a Streamlit app to explore results and gather insights.</li>
+            <li>Topic modeling to identify strenghts and weaknesses.</li>
+            <li>Filtered search reviews feature to read real-life examples.</li>
+            <li>AI Assistant for human-like insights.</li>
           </ul>
           <div class="btn-row">
             <a class="btn btn-primary" href="https://banking-app-reviews.streamlit.app/" target="_blank" rel="noopener">
               <!-- external link icon -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M8 7h9v9"/></svg>
-              Web App
+              Access Web App
             </a>
             <a class="btn" href="https://github.com/pcatarino88/banking_app_reviews" target="_blank" rel="noopener">
               <!-- GitHub icon -->
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.85 9.7.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.12-1.52-1.12-1.52-.92-.64.07-.63.07-.63 1.02.07 1.56 1.08 1.56 1.08.9 1.58 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.73 0 0 .85-.28 2.8 1.05a9.33 9.33 0 0 1 5.1 0c1.94-1.33 2.79-1.05 2.79-1.05.55 1.42.21 2.47.11 2.73.64.72 1.02 1.64 1.02 2.76 0 3.93-2.35 4.8-4.59 5.06.36.32.67.93.67 1.88 0 1.36-.01 2.45-.01 2.78 0 .26.18.58.69.48A10.07 10.07 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
-              GitHub
+              GitHub Repository
             </a>
           </div>
         </article>
@@ -238,28 +249,35 @@
         <!-- Project 2 -->
         <article class="card">
           <h3>Scouting football players</h3>
-          <div class="meta">EDA · Feature Engineering · Streamlit</div>
           <div class="badges">
             <span class="badge">Python</span>
-            <span class="badge">Pandas</span>
-            <span class="badge">Plotly</span>
+            <span class="badge">Web Scraping</span>
+            <span class="badge">Machine Learning</span>
+            <span class="badge">Visualization</span>
             <span class="badge">Streamlit</span>
           </div>
-          <p><strong>Goal:</strong> Scout and compare players across top leagues, filtering by position, skills, age, and market value.</p>
+          <p><strong>Project Goal:</strong> <p></p>
+            Football is about passion, but also about data. This project aims to help football scouts and enthusiasts
+            identify top players based on specific skill sets. By scraping and analyzing player statistics from popular
+            football databases, the project provides a tool to filter and rank players according to user-defined criteria.</p>
+          
+          <img src="images/app_scout1.png" alt="Project Goal illustration" class="goal-img">
+          
+          <p><strong>Key Features:</strong> <p></p>
           <ul>
-            <li>Scraped 100+ stats for 9k+ players from Transfermarkt & FBRef.</li>
-            <li>Cleaned data and engineered skill composites.</li>
+            <li>Scraped players stats from Transfermarkt & FBRef.</li>
+            <li>Algorithms to quantify player skills.</li>
             <li>Algorithms to find top players given preferred skills.</li>
-            <li>Interactive comparisons with Plotly; Streamlit app UI.</li>
+            <li>Interactive player comparisons.</li>
           </ul>
           <div class="btn-row">
             <a class="btn btn-primary" href="https://scout-football.streamlit.app/" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M8 7h9v9"/></svg>
-              Web App
+              Access Web App
             </a>
             <a class="btn" href="https://github.com/pcatarino88/football_scout" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.85 9.7.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.12-1.52-1.12-1.52-.92-.64.07-.63.07-.63 1.02.07 1.56 1.08 1.56 1.08.9 1.58 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.73 0 0 .85-.28 2.8 1.05a9.33 9.33 0 0 1 5.1 0c1.94-1.33 2.79-1.05 2.79-1.05.55 1.42.21 2.47.11 2.73.64.72 1.02 1.64 1.02 2.76 0 3.93-2.35 4.8-4.59 5.06.36.32.67.93.67 1.88 0 1.36-.01 2.45-.01 2.78 0 .26.18.58.69.48A10.07 10.07 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
-              GitHub
+              GitHub Repository
             </a>
           </div>
         </article>
